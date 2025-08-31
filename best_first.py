@@ -58,20 +58,9 @@ def best_first_search(start_state, goal_state):
 
     return None
 
-def read_input(filename):
-    with open(filename, "r") as f:
-        lines = [line.strip() for line in f if line.strip()]
-    start_state = [list(map(int, lines[i].split())) for i in range(3)]
-    goal_state = [list(map(int, lines[i+3].split())) for i in range(3)]
-    return start_state, goal_state
-
+# -------------------- RUN EXAMPLE --------------------
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        print("Format: python3 eight_puzzle.py <input_file>")
-        sys.exit(1)
-
-    input_file = sys.argv[1]
-    start_state, goal_state = read_input(input_file)
+    
     solution = best_first_search(start_state, goal_state)
 
     if solution:
