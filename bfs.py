@@ -1,7 +1,12 @@
+from typing import Tuple
 from collections import deque
-from puzzle_moves import goal_state, moves, is_valid_move
+from puzzle_moves import goal_state, moves, is_valid_move, is_solvable
 
-def bfs(start_state:tuple):
+def bfs(start_state:Tuple[int, ...]) -> str:
+    "Breadth First Search"
+    if (is_solvable(start_state) == False):
+       return ""
+    
     queue = deque([(start_state, "")])  # (state, path)
     visited = set([start_state])
 
@@ -27,5 +32,17 @@ def bfs(start_state:tuple):
                     visited.add(new_state)
                     queue.append((new_state, path + move))
 
-    return None
+    return ""
 
+
+# -------------------- RUN EXAMPLE --------------------
+if __name__ == "__main__":
+    start_state = (1, 2, 3,
+                   4, 0, 6,
+                   7, 5, 8)
+
+    path = bfs(start_state)
+    if path:
+        print("Solution found in",len(path),"moves:",path)
+    else:
+        print("No solution found.")
