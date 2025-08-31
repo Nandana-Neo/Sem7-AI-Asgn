@@ -1,8 +1,8 @@
 from typing import Tuple
-from puzzle_moves import goal_state, moves, is_valid_move, is_solvable
+from puzzle_moves import moves, is_valid_move, is_solvable
 
 
-def depth_limited_dfs(start_state: Tuple[int, ...], limit: int):
+def depth_limited_dfs(start_state: Tuple[int, ...], goal_state: Tuple[int, ...], limit: int):
     """Non-recursive Depth Limited DFS using a stack"""
     stack = [(start_state, "", 0)]
     # (state, path_so_far, depth)
@@ -34,14 +34,14 @@ def depth_limited_dfs(start_state: Tuple[int, ...], limit: int):
     return None
 
 
-def idfs(start_state: Tuple[int, ...], max_depth: int = 50) -> str:
+def idfs(start_state: Tuple[int, ...], goal_state: Tuple[int, ...], max_depth: int = 50) -> str:
     """Iterative Deepening DFS"""
-    
-    if (is_solvable(start_state) == False):
+
+    if (is_solvable(start_state, goal_state) == False):
        return ""
     
     for depth in range(max_depth + 1):
-        result = depth_limited_dfs(start_state, depth)
+        result = depth_limited_dfs(start_state, goal_state, depth)
         if result:
             return result
     return ""
@@ -51,8 +51,11 @@ if __name__ == "__main__":
     start_state = (1, 2, 3,
                    4, 0, 6,
                    7, 5, 8)
+    goal_state = (1, 2, 3, 
+                  4, 5, 6, 
+                  7, 8, 0)
 
-    path = idfs(start_state)
+    path = idfs(start_state, goal_state)
     if path:
         print("Solution found in",len(path),"moves:",path)
     else:

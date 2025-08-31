@@ -6,11 +6,14 @@ from idfs import idfs
 initial_state = (1, 2, 0,
                  4, 5, 3,
                  7, 8, 6)
+goal_state = (1, 2, 3, 
+              4, 5, 6, 
+              7, 8, 0) 
 
 
 print("---------------------BFS SOLUTION---------------------")
 
-solution_bfs = bfs(initial_state)
+solution_bfs = bfs(initial_state, goal_state)
 if solution_bfs:
     print("Solution found in", len(solution_bfs), "moves:", solution_bfs)
 else:
@@ -19,7 +22,7 @@ else:
 
 print("---------------------DFS SOLUTION---------------------")
 
-solution_dfs = dfs(initial_state)
+solution_dfs = dfs(initial_state, goal_state)
 if solution_dfs:
     print("Solution found in", len(solution_dfs), "moves:", solution_dfs)
 else:
@@ -27,7 +30,7 @@ else:
 
 print("---------------------IDFS SOLUTION---------------------")
 
-solution_idfs = idfs(initial_state)
+solution_idfs = idfs(initial_state, goal_state)
 if solution_idfs:
     print("Solution found in", len(solution_idfs), "moves:", solution_idfs)
 else:

@@ -2,9 +2,9 @@ from collections import deque
 from typing import Tuple
 from puzzle_moves import *
 
-def dfs(start_state: Tuple[int, ...]) -> str:
+def dfs(start_state: Tuple[int, ...], goal_state: Tuple[int, ...]) -> str:
     """Depth First Search"""
-    if (is_solvable(start_state) == False):
+    if (is_solvable(start_state, goal_state) == False):
        return ""
 
     stack = deque([(start_state, "")])   # path is string of moves
@@ -38,8 +38,11 @@ if __name__ == "__main__":
     start_state = (1, 2, 3,
                    4, 0, 6,
                    7, 5, 8)
+    goal_state =  (1, 2, 3, 
+                   4, 5, 6, 
+                   7, 8, 0)  # 0 = blank
 
-    path = dfs(start_state)
+    path = dfs(start_state, goal_state)
     if path:
         print("Solution found in",len(path),"moves:",path)
     else:
