@@ -1,7 +1,7 @@
 from bfs import bfs
 from dfs import dfs
 from idfs import idfs
-from best_first import best_first_search
+from a_star import a_star_search
 import sys
 
 def read_input(filename):
@@ -43,14 +43,14 @@ if solution_idfs:
 else:
     print("No solution exists")
 
-print("---------------BEST FIRST SEARCH SOLUTION--------------")
+print("---------------A STAR SEARCH SOLUTION--------------")
 
 initial_state_list = [list(initial_state[i*3:(i+1)*3]) for i in range(3)]
 goal_state_list = [list(goal_state[i*3:(i+1)*3]) for i in range(3)]
-solution_best_first = best_first_search(initial_state_list, goal_state_list)
+solution_a_star = a_star_search(initial_state_list, goal_state_list)
 
-if solution_best_first:
-    moves_str = "".join(solution_best_first)
-    print(f"Solution found in {len(solution_best_first)} moves: {moves_str}")
+if solution_a_star:
+    moves_str = "".join(solution_a_star)
+    print(f"Solution found in {len(solution_a_star)} moves: {moves_str}")
 else:
     print("No solution exists")

@@ -32,7 +32,7 @@ def get_successors(state):
 def state_to_tuple(state):
     return tuple(tuple(row) for row in state)
 
-def best_first_search(start_state, goal_state):
+def a_star_search(start_state, goal_state):
     open_list = []
     start_h = manhattan_distance(start_state, goal_state)
     heapq.heappush(open_list, (start_h, 0, start_state, []))
@@ -74,7 +74,7 @@ if __name__ == "__main__":
 
     input_file = sys.argv[1]
     start_state, goal_state = read_input(input_file)
-    solution = best_first_search(start_state, goal_state)
+    solution = a_star_search(start_state, goal_state)
 
     if solution:
         moves_str = "".join(solution)
